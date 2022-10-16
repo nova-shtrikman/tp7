@@ -91,7 +91,7 @@ window.onload = function() {
   }
   
   document.querySelector("#thirdRecipe").onclick = function(){
-    Mignon.displayRecipe();
+    Guac.displayRecipe();
   
   }
     
