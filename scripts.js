@@ -1,4 +1,4 @@
-//Javascript for TP6
+//Javascript for TP7
 
 
 function loadFileInto(fromFile, whereTo) {
@@ -12,7 +12,7 @@ function loadFileInto(fromFile, whereTo) {
 	// provides code to do something in response to the AJAX request
 	ajax.onreadystatechange = function() {
 			if ((this.readyState == 4) && (this.status == 200)) {
-				document.querySelector(whereTo).innerHTML += this.responseText;
+				document.querySelector(whereTo).innerHTML = this.responseText;
 				
 			} else if ((this.readyState == 4) && (this.status != 200)) {
 				console.log("Error: " + this.responseText);
@@ -25,36 +25,74 @@ function loadFileInto(fromFile, whereTo) {
 
 }
 
+//new recipe object
+
+function Recipe(recipeName, contributorName, imageURL, ingredientsURL, equiptmentURL, directionsURL){
+  
+  this.recipeName = recipeName;
+  this.contributor = contributorName;
+  this.imageURL = imageURL;
+  this.ingredients = ingredientsURL;
+  this.equiptment = equiptmentURL;
+  this.directions = directionsURL;
+  
+ this.displayRecipe = function(){
+   
+   document.querySelector("#titleBanner h1").innerHTML = this.recipeName;
+   document.querySelector("#contributor").innerHTML = this.contributor;
+   document.querySelector("#titleBanner").style.backgroundImage = "url(" + this.imageURL + ")";
+   loadFileInto(this.ingredients, "#ingredients ul");
+   loadFileInto(this.equiptment, "#equiptment ol");
+   loadFileInto(this.directions, "#directions ul");
+  
+ } 
+  
+}
+
+IcedMatchaLatte = new Recipe(
+  "Iced Matcha Latte",
+  "Nova", 
+  "https://images.unsplash.com/photo-1631308491952-040f80133535?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8bWF0Y2hhJTIwbGF0dGV8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60", 
+  "ingredients.html", 
+  "equiptment.html", 
+  "directions.html"
+);
+
+Mignon = new Recipe(
+  "Mignon",
+  "organically allison", 
+  "https://organicallyaddison.com/wp-content/uploads/2021/10/instant_pot_steak_9-700x1050.jpeg", 
+  "mignon-ingredients.html", 
+  "mignon-equiptment.html", 
+  "mignon-directions.html"
+);
+
+Guac = new Recipe(
+  "Guacamole",
+  "Doug's recipe book", 
+  "https://www.simplyrecipes.com/thmb/a4k8j7YDx2cJUdupcq9ja4NMbiM=/2000x1333/filters:fill(auto,1)/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2018__07__Guacamole-LEAD-2-924dbc47ba1e4ecd8e497bcd687cac4a.jpg", 
+  "guac-ingredients.html", 
+  "guac-equiptment.html", 
+  "guac-directions.html"
+
+
 
 
 
 window.onload = function() {
   
-  loadFileInto("ingredients.html", "#ingredients ul");
-  loadFileInto("directions.html", "#directions ol");
-  loadFileInto("equiptment.html", "#equiptment ul");
+  document.querySelector("#firstRecipe").onclick = function(){
+    IcedMatchaLatte.displayRecipe();
+  }
   
-  document.querySelector("#titleBanner h1").classList.add("tp");
-  
-  document.querySelector("#titleBanner h1").onclick = function() {
-    
-    this.classList.toggle("black");
+  document.querySelector("#secondRecipe").onclick = function(){
+    Mignon.displayRecipe();
     
   }
   
-  document.querySelector("#recipeColomns #ingredients").onclick =function(){
-    this.classList.toggle("tpShow");
-  }
-   document.querySelector("#recipeColomns #equiptment").onclick =function(){
-    this.classList.toggle("tpShow");
-   }
-    document.querySelector("#recipeColomns #directions").onclick =function(){
-    this.classList.toggle("tpShow");
-    }
-    
-   setTimeout(function(){
-              document.querySelector("#recipeColomns #equiptment ul").innerHTML += "<li>An appetite for candy</li>";
-   },10);
+  document.querySelector("#thirdRecipe").onclick = function(){
+    Mignon.displayRecipe();
   
+  }
     
 } //end window.onload 

@@ -86,20 +86,6 @@ h4 {
 #recipeColomns div#directions {flex-basis: 50%;}
 
 
-#recipeColomns #ingredients ul,
-#recipeColomns #equiptment ul,
-#recipeColomns #directions ol {
-  display: none;}
-
-
-#recipeColomns #ingredients.tpShow ul,
-#recipeColomns #equiptment.tpShow ul,
-#recipeColomns #directions.tpShow ol {
-  display: block;
-}
-
-
-
 #recipeColomns ul,
 #recipeColomns ol {
   padding-left: 1.1em;
